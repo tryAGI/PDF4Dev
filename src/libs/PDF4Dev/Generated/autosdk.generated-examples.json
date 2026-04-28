@@ -1,0 +1,202 @@
+{
+  "Examples": [
+    {
+      "Order": 1,
+      "Title": "Delete account",
+      "Slug": "deleteaccount",
+      "Description": "Permanently delete the user account and all associated data (templates, API keys, logs). This action cannot be undone. Session auth only.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\nvar response = await client.Account.DeleteAccountAsync();\n\n// Example response:\n// {\n//   \u0022deleted\u0022: true\n// }",
+      "Format": "sdk",
+      "OperationId": "deleteAccount",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 2,
+      "Title": "Create an API key",
+      "Slug": "createapikey",
+      "Description": "Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.",
+      "Language": "http",
+      "Code": "### Create an API key\n# @name createApiKey\nPOST {{host}}/api/v1/api-keys\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022name\u0022: \u0022Production\u0022,\n  \u0022permission\u0022: \u0022full_access\u0022\n}\n\n## Responses\n# 201\n# Description: API key created. The \u0060key\u0060 field contains the full token: this is the only time it is shown.\n# Content-Type: application/json\n# 400\n# Description: Bad request: missing or invalid parameters\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "createApiKey",
+      "Setup": null
+    },
+    {
+      "Order": 3,
+      "Title": "Delete an API key",
+      "Slug": "deleteapikey",
+      "Description": "Permanently revoke an API key. Any requests using this key will immediately fail. Session auth only.",
+      "Language": "http",
+      "Code": "### Delete an API key\n# @name deleteApiKey\nDELETE {{host}}/api/v1/api-keys/{{id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: API key deleted\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "deleteApiKey",
+      "Setup": null
+    },
+    {
+      "Order": 4,
+      "Title": "List API keys",
+      "Slug": "listapikeys",
+      "Description": "Returns all API keys for the authenticated user. Only key prefix is shown, not the full token. Session auth only.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\nvar response = await client.ApiKeys.ListApiKeysAsync();",
+      "Format": "sdk",
+      "OperationId": "listApiKeys",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 5,
+      "Title": "Create a component",
+      "Slug": "createcomponent",
+      "Description": "Create a header or footer component. Use {{variables}} for data. In footers, use \u003Cspan class=\u0022pageNumber\u0022\u003E\u003C/span\u003E and \u003Cspan class=\u0022totalPages\u0022\u003E\u003C/span\u003E for page numbers. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Create a component\n# @name createComponent\nPOST {{host}}/api/v1/components\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022name\u0022: \u0022string\u0022,\n  \u0022type\u0022: \u0022header\u0022,\n  \u0022html\u0022: \u0022string\u0022,\n  \u0022preview\u0022: \u0022string\u0022\n}\n\n## Responses\n# 201\n# Description: Component created\n# Content-Type: application/json\n# 400\n# Description: Bad request: missing or invalid parameters\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "createComponent",
+      "Setup": null
+    },
+    {
+      "Order": 6,
+      "Title": "Delete a component",
+      "Slug": "deletecomponent",
+      "Description": "Permanently delete a component. Templates using it will no longer show it. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Delete a component\n# @name deleteComponent\nDELETE {{host}}/api/v1/components/{{id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Component deleted\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "deleteComponent",
+      "Setup": null
+    },
+    {
+      "Order": 7,
+      "Title": "Get a component",
+      "Slug": "getcomponent",
+      "Description": "Retrieve a single component. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Get a component\n# @name getComponent\nGET {{host}}/api/v1/components/{{id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Component found\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "getComponent",
+      "Setup": null
+    },
+    {
+      "Order": 8,
+      "Title": "List components",
+      "Slug": "listcomponents",
+      "Description": "Returns all components (headers, footers, blocks). Use header/footer IDs in templates for repeating page elements. Block components are referenced via \u003Cpdf4-block\u003E tags in template HTML. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\nvar response = await client.Components.ListComponentsAsync();",
+      "Format": "sdk",
+      "OperationId": "listComponents",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 9,
+      "Title": "Update a component",
+      "Slug": "updatecomponent",
+      "Description": "Update a component\u0027s name or HTML. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Update a component\n# @name updateComponent\nPUT {{host}}/api/v1/components/{{id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022name\u0022: \u0022string\u0022,\n  \u0022type\u0022: \u0022header\u0022,\n  \u0022html\u0022: \u0022string\u0022,\n  \u0022preview\u0022: \u0022string\u0022\n}\n\n## Responses\n# 200\n# Description: Component updated\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "updateComponent",
+      "Setup": null
+    },
+    {
+      "Order": 10,
+      "Title": "List PDF generation logs",
+      "Slug": "getlogs",
+      "Description": "Returns logs of all PDF generations with cursor-based pagination. Filter by status, template, or date range. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\nvar response = await client.Logs.GetLogsAsync();",
+      "Format": "sdk",
+      "OperationId": "getLogs",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 11,
+      "Title": "Generate a PDF",
+      "Slug": "renderpdf",
+      "Description": "Render a PDF from a saved template or raw HTML. Pass \u0060template_id\u0060 to use a saved template, or \u0060html\u0060 for one-off renders. Variables in \u0060{{handlebars}}\u0060 syntax are replaced with values from \u0060data\u0060. Returns the PDF as binary data (\u0060application/pdf\u0060).",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::PDF4Dev.RenderRequest\u003E(\n    @\u0022{\n  \u0022\u0022html\u0022\u0022: \u0022\u0022\\u003Ch1\\u003ELandscape Report\\u003C/h1\\u003E\u0022\u0022,\n  \u0022\u0022format\u0022\u0022: {\n    \u0022\u0022preset\u0022\u0022: \u0022\u0022a4-landscape\u0022\u0022,\n    \u0022\u0022margins\u0022\u0022: {\n      \u0022\u0022top\u0022\u0022: \u0022\u002210mm\u0022\u0022,\n      \u0022\u0022bottom\u0022\u0022: \u0022\u002210mm\u0022\u0022,\n      \u0022\u0022left\u0022\u0022: \u0022\u002215mm\u0022\u0022,\n      \u0022\u0022right\u0022\u0022: \u0022\u002215mm\u0022\u0022\n    },\n    \u0022\u0022background_color\u0022\u0022: \u0022\u0022#ffffff\u0022\u0022,\n    \u0022\u0022font_family\u0022\u0022: \u0022\u0022Inter, sans-serif\u0022\u0022,\n    \u0022\u0022font_size\u0022\u0022: \u0022\u002214px\u0022\u0022\n  }\n}\u0022)!;\n\nvar response = await client.Render.RenderPdfAsync(\n    request: request\n);",
+      "Format": "sdk",
+      "OperationId": "renderPdf",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 12,
+      "Title": "Get usage statistics",
+      "Slug": "getstats",
+      "Description": "Returns aggregated usage statistics including template count, total renders, success rate, average duration, and total size. Optionally filter by time period. Session auth only.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\nvar response = await client.Stats.GetStatsAsync();",
+      "Format": "sdk",
+      "OperationId": "getStats",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 13,
+      "Title": "Create a template",
+      "Slug": "createtemplate",
+      "Description": "Create a new template. The \u0060name\u0060 is required and a URL-safe \u0060slug\u0060 is auto-generated from it. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::PDF4Dev.CreateTemplateRequest\u003E(\n    @\u0022{\n  \u0022\u0022name\u0022\u0022: \u0022\u0022Monthly Invoice\u0022\u0022,\n  \u0022\u0022html\u0022\u0022: \u0022\u0022\\u003C!DOCTYPE html\\u003E\\u003Chtml\\u003E\\u003Cbody\\u003E\\u003Ch1\\u003EInvoice #{{invoice_number}}\\u003C/h1\\u003E\\u003Cp\\u003EAmount: {{total}}\\u003C/p\\u003E\\u003C/body\\u003E\\u003C/html\\u003E\u0022\u0022,\n  \u0022\u0022sample_data\u0022\u0022: {\n    \u0022\u0022invoice_number\u0022\u0022: \u0022\u0022INV-001\u0022\u0022,\n    \u0022\u0022total\u0022\u0022: \u0022\u0022$1,000.00\u0022\u0022\n  },\n  \u0022\u0022pdf_format\u0022\u0022: {\n    \u0022\u0022preset\u0022\u0022: \u0022\u0022a4\u0022\u0022,\n    \u0022\u0022margins\u0022\u0022: {\n      \u0022\u0022top\u0022\u0022: \u0022\u002220mm\u0022\u0022,\n      \u0022\u0022bottom\u0022\u0022: \u0022\u002220mm\u0022\u0022,\n      \u0022\u0022left\u0022\u0022: \u0022\u002215mm\u0022\u0022,\n      \u0022\u0022right\u0022\u0022: \u0022\u002215mm\u0022\u0022\n    }\n  }\n}\u0022)!;\n\nvar response = await client.Templates.CreateTemplateAsync(\n    request: request\n);",
+      "Format": "sdk",
+      "OperationId": "createTemplate",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 14,
+      "Title": "Delete a template",
+      "Slug": "deletetemplate",
+      "Description": "Permanently delete a template. This action cannot be undone. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Delete a template\n# @name deleteTemplate\nDELETE {{host}}/api/v1/templates/{{id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Template deleted\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "deleteTemplate",
+      "Setup": null
+    },
+    {
+      "Order": 15,
+      "Title": "Duplicate a template",
+      "Slug": "duplicatetemplate",
+      "Description": "Creates a copy of the template with \u0022(copy)\u0022 appended to its name. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Duplicate a template\n# @name duplicateTemplate\nPOST {{host}}/api/v1/templates/{{id}}/duplicate\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 201\n# Description: Template duplicated\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "duplicateTemplate",
+      "Setup": null
+    },
+    {
+      "Order": 16,
+      "Title": "Get a template",
+      "Slug": "gettemplate",
+      "Description": "Retrieve a single template by ID or slug. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Get a template\n# @name getTemplate\nGET {{host}}/api/v1/templates/{{id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Template found\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "getTemplate",
+      "Setup": null
+    },
+    {
+      "Order": 17,
+      "Title": "List templates",
+      "Slug": "listtemplates",
+      "Description": "Returns all templates belonging to the authenticated user. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "csharp",
+      "Code": "using var client = new PDF4DevClient(apiKey);\nvar response = await client.Templates.ListTemplatesAsync();",
+      "Format": "sdk",
+      "OperationId": "listTemplates",
+      "Setup": "This example assumes \u0060using PDF4Dev;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 18,
+      "Title": "Update a template",
+      "Slug": "updatetemplate",
+      "Description": "Update a template\u0027s HTML, format, or sample data. Only provided fields are updated. Requires \u0060full_access\u0060 API key scope.",
+      "Language": "http",
+      "Code": "### Update a template\n# @name updateTemplate\nPUT {{host}}/api/v1/templates/{{id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022html\u0022: \u0022\\u003Ch1\\u003EUpdated Invoice #{{number}}\\u003C/h1\\u003E\u0022,\n  \u0022sample_data\u0022: {\n    \u0022number\u0022: \u0022INV-002\u0022\n  }\n}\n\n## Responses\n# 200\n# Description: Template updated\n# Content-Type: application/json\n# 401\n# Description: Unauthorized: missing, invalid, or insufficient API key\n# Content-Type: application/json\n# 404\n# Description: Resource not found\n# Content-Type: application/json",
+      "Format": "http",
+      "OperationId": "updateTemplate",
+      "Setup": null
+    }
+  ]
+}
