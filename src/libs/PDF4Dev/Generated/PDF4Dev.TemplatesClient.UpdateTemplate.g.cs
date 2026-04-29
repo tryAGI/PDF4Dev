@@ -139,7 +139,7 @@ namespace PDF4Dev
                 PrepareUpdateTemplateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id,
+                    id: id!,
                     request: request);
 
                 return __httpRequest;
