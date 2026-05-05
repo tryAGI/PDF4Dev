@@ -59,7 +59,7 @@ namespace PDF4Dev
         /// <summary>
         /// 
         /// </summary>
-        public AccountClient Account => new AccountClient(HttpClient, authorizations: Authorizations, options: Options)
+        public AccountClient Account => new AccountClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -68,7 +68,7 @@ namespace PDF4Dev
         /// <summary>
         /// 
         /// </summary>
-        public ApiKeysClient ApiKeys => new ApiKeysClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ApiKeysClient ApiKeys => new ApiKeysClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -77,7 +77,7 @@ namespace PDF4Dev
         /// <summary>
         /// Reusable HTML fragments: headers (repeat at top of every page), footers (repeat at bottom), and blocks (render inline). Attach header/footer to templates via header_component_id and footer_component_id. Reference blocks via &lt;pdf4-block&gt; tags in template HTML. Requires `full_access` API key scope.
         /// </summary>
-        public ComponentsClient Components => new ComponentsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ComponentsClient Components => new ComponentsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -86,7 +86,7 @@ namespace PDF4Dev
         /// <summary>
         /// View PDF generation history. Each render (success or error) is logged with duration, file size, and metadata. Requires `full_access` API key scope.
         /// </summary>
-        public LogsClient Logs => new LogsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public LogsClient Logs => new LogsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -95,7 +95,7 @@ namespace PDF4Dev
         /// <summary>
         /// Generate PDFs from templates or raw HTML. This is the core endpoint: most integrations only need this.
         /// </summary>
-        public RenderClient Render => new RenderClient(HttpClient, authorizations: Authorizations, options: Options)
+        public RenderClient Render => new RenderClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -104,7 +104,7 @@ namespace PDF4Dev
         /// <summary>
         /// 
         /// </summary>
-        public StatsClient Stats => new StatsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public StatsClient Stats => new StatsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -113,7 +113,7 @@ namespace PDF4Dev
         /// <summary>
         /// CRUD operations for HTML templates. Templates support Handlebars `{{variables}}` and can be referenced by ID or slug in render requests. Requires `full_access` API key scope.
         /// </summary>
-        public TemplatesClient Templates => new TemplatesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public TemplatesClient Templates => new TemplatesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -152,10 +152,10 @@ namespace PDF4Dev
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public PDF4DevClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::PDF4Dev.EndPointAuthorization>? authorizations = null,
-            global::PDF4Dev.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::PDF4Dev.EndPointAuthorization>? authorizations,
+            global::PDF4Dev.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 

@@ -76,6 +76,44 @@ namespace PDF4Dev
             global::PDF4Dev.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            var __response = await GetLogsAsResponseAsync(
+                limit: limit,
+                cursor: cursor,
+                status: status,
+                templateId: templateId,
+                from: from,
+                to: to,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// List PDF generation logs<br/>
+        /// Returns logs of all PDF generations with cursor-based pagination. Filter by status, template, or date range. Requires `full_access` API key scope.
+        /// </summary>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
+        /// <param name="cursor"></param>
+        /// <param name="status"></param>
+        /// <param name="templateId"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::PDF4Dev.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::PDF4Dev.AutoSDKHttpResponse<global::PDF4Dev.CursorPaginatedLogs>> GetLogsAsResponseAsync(
+            int? limit = default,
+            string? cursor = default,
+            global::PDF4Dev.GetLogsStatus? status = default,
+            string? templateId = default,
+            global::System.DateTime? from = default,
+            global::System.DateTime? to = default,
+            global::PDF4Dev.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
             PrepareArguments(
                 client: HttpClient);
             PrepareGetLogsArguments(
@@ -109,16 +147,17 @@ namespace PDF4Dev
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::PDF4Dev.PathBuilder(
                                 path: "/api/v1/logs",
-                                baseUri: HttpClient.BaseAddress); 
+                                baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("status", status?.ToValueString())
                                 .AddOptionalParameter("template_id", templateId)
                                 .AddOptionalParameter("from", from?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
-                                .AddOptionalParameter("to", to?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                                .AddOptionalParameter("to", to?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::PDF4Dev.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -195,6 +234,8 @@ namespace PDF4Dev
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -205,6 +246,11 @@ namespace PDF4Dev
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::PDF4Dev.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::PDF4Dev.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
@@ -222,6 +268,8 @@ namespace PDF4Dev
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -231,8 +279,7 @@ namespace PDF4Dev
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::PDF4Dev.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -241,6 +288,11 @@ namespace PDF4Dev
                         __attempt < __maxAttempts &&
                         global::PDF4Dev.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::PDF4Dev.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::PDF4Dev.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::PDF4Dev.AutoSDKRequestOptionsSupport.CreateHookContext(
@@ -257,14 +309,15 @@ namespace PDF4Dev
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::PDF4Dev.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -304,6 +357,8 @@ namespace PDF4Dev
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -324,6 +379,8 @@ namespace PDF4Dev
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                             // Unauthorized: missing, invalid, or insufficient API key
@@ -386,9 +443,13 @@ namespace PDF4Dev
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::PDF4Dev.CursorPaginatedLogs.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::PDF4Dev.CursorPaginatedLogs.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::PDF4Dev.AutoSDKHttpResponse<global::PDF4Dev.CursorPaginatedLogs>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::PDF4Dev.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -416,9 +477,13 @@ namespace PDF4Dev
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::PDF4Dev.CursorPaginatedLogs.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::PDF4Dev.CursorPaginatedLogs.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::PDF4Dev.AutoSDKHttpResponse<global::PDF4Dev.CursorPaginatedLogs>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::PDF4Dev.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
