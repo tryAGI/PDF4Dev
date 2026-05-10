@@ -97,5 +97,6 @@ namespace PDF4Dev
         public CreateTemplateRequest()
         {
         }
+
     }
 }
