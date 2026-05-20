@@ -25,6 +25,19 @@ namespace PDF4Dev
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::PDF4Dev.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::System.IO.Stream> RenderPdfAsStreamAsync(
+
+            global::PDF4Dev.RenderRequest request,
+            global::PDF4Dev.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Generate a PDF<br/>
+        /// Render a PDF from a saved template or raw HTML. Pass `template_id` to use a saved template, or `html` for one-off renders. Variables in `{{handlebars}}` syntax are replaced with values from `data`. Returns the PDF as binary data (`application/pdf`).
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::PDF4Dev.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::PDF4Dev.AutoSDKHttpResponse<byte[]>> RenderPdfAsResponseAsync(
 
             global::PDF4Dev.RenderRequest request,

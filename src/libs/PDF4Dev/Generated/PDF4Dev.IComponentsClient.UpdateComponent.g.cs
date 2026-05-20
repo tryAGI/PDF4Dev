@@ -24,6 +24,21 @@ namespace PDF4Dev
         /// Update a component's name or HTML. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::PDF4Dev.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::PDF4Dev.AutoSDKHttpResponse<global::PDF4Dev.Component>> UpdateComponentAsResponseAsync(
+            string id,
+
+            global::PDF4Dev.UpdateComponentRequest request,
+            global::PDF4Dev.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update a component<br/>
+        /// Update a component's name or HTML. Requires `full_access` API key scope.
+        /// </summary>
+        /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="type">
         /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline.

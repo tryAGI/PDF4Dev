@@ -120,5 +120,6 @@ namespace PDF4Dev
         public PdfLog()
         {
         }
+
     }
 }

@@ -61,5 +61,6 @@ namespace PDF4Dev
         public CursorPaginatedLogs()
         {
         }
+
     }
 }
