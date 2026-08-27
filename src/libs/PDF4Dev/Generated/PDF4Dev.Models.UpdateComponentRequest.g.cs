@@ -9,7 +9,7 @@ namespace PDF4Dev
     public sealed partial class UpdateComponentRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }
@@ -22,7 +22,7 @@ namespace PDF4Dev
         public global::PDF4Dev.UpdateComponentRequestType? Type { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("html")]
         public string? Html { get; set; }

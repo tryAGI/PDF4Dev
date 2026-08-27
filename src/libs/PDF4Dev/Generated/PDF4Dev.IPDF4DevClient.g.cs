@@ -56,18 +56,18 @@ namespace PDF4Dev
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AccountClient Account { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ApiKeysClient ApiKeys { get; }
 
@@ -87,7 +87,7 @@ namespace PDF4Dev
         public RenderClient Render { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public StatsClient Stats { get; }
 

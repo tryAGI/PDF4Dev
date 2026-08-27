@@ -10,11 +10,11 @@ namespace PDF4Dev
     public enum PdfFormatFooterPosition
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AfterContent,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PageBottom,
     }

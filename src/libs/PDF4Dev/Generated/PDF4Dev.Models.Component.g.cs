@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class Component
     {
@@ -44,13 +44,13 @@ namespace PDF4Dev
         public string? Preview { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public global::System.DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public global::System.DateTime? UpdatedAt { get; set; }

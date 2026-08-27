@@ -10,27 +10,27 @@ namespace PDF4Dev
     public enum PdfFormatPreset
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         A4,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         A4Landscape,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Custom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Letter,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LetterLandscape,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Square,
     }

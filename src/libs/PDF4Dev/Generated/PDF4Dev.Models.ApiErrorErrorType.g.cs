@@ -9,19 +9,19 @@ namespace PDF4Dev
     public enum ApiErrorErrorType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ApiError,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AuthenticationError,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InvalidRequestError,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NotFoundError,
     }

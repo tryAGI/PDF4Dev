@@ -9,15 +9,15 @@ namespace PDF4Dev
     public enum UpdateComponentRequestType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Block,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Footer,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Header,
     }

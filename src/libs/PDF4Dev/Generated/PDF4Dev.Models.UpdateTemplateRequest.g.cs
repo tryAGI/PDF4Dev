@@ -9,19 +9,19 @@ namespace PDF4Dev
     public sealed partial class UpdateTemplateRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("html")]
         public string? Html { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("plain_text")]
         public string? PlainText { get; set; }
@@ -33,7 +33,7 @@ namespace PDF4Dev
         public global::PDF4Dev.PdfFormat? PdfFormat { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sample_data")]
         public object? SampleData { get; set; }

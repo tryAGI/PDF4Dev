@@ -4,20 +4,20 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ListComponentsType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Block,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Footer,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Header,
     }

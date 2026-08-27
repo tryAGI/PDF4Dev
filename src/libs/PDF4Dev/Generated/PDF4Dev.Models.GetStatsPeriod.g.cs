@@ -4,24 +4,24 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GetStatsPeriod
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1h,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x24h,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x30d,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7d,
     }

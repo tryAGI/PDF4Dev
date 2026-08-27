@@ -9,7 +9,7 @@ namespace PDF4Dev
     public sealed partial class ApiError
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("error")]
         public global::PDF4Dev.ApiErrorError? Error { get; set; }

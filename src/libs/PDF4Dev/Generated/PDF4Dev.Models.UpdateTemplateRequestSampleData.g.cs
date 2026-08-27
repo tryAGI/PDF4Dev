@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class UpdateTemplateRequestSampleData
     {
