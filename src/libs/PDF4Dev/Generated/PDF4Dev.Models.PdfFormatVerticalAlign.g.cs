@@ -10,15 +10,15 @@ namespace PDF4Dev
     public enum PdfFormatVerticalAlign
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Bottom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Center,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Top,
     }

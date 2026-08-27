@@ -54,7 +54,7 @@ namespace PDF4Dev
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::PDF4Dev.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
@@ -64,7 +64,7 @@ namespace PDF4Dev
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AccountClient Account => new AccountClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -73,7 +73,7 @@ namespace PDF4Dev
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ApiKeysClient ApiKeys => new ApiKeysClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -109,7 +109,7 @@ namespace PDF4Dev
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public StatsClient Stats => new StatsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {

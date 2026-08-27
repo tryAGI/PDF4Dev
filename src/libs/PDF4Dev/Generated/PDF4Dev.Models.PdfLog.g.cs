@@ -4,18 +4,18 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class PdfLog
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         public string? Id { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("template_id")]
         public string? TemplateId { get; set; }
@@ -27,13 +27,13 @@ namespace PDF4Dev
         public string? TemplateName { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
         public string? ApiKeyId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::PDF4Dev.JsonConverters.PdfLogStatusJsonConverter))]
@@ -58,7 +58,7 @@ namespace PDF4Dev
         public string? Error { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public global::System.DateTime? CreatedAt { get; set; }

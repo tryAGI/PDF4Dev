@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApiKey
     {
@@ -38,7 +38,7 @@ namespace PDF4Dev
         public global::PDF4Dev.ApiKeyPermission? Permission { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public global::System.DateTime? CreatedAt { get; set; }

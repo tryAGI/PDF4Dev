@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class Template
     {
@@ -69,13 +69,13 @@ namespace PDF4Dev
         public string? FooterComponentId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public global::System.DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public global::System.DateTime? UpdatedAt { get; set; }

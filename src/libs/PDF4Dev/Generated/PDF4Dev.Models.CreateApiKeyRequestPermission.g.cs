@@ -10,11 +10,11 @@ namespace PDF4Dev
     public enum CreateApiKeyRequestPermission
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FullAccess,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         RenderOnly,
     }

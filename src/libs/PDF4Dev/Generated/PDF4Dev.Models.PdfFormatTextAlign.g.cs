@@ -10,19 +10,19 @@ namespace PDF4Dev
     public enum PdfFormatTextAlign
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Center,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Justify,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Left,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Right,
     }

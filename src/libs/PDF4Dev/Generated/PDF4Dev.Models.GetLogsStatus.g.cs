@@ -4,16 +4,16 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GetLogsStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Error,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Success,
     }

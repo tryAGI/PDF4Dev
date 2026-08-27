@@ -20,7 +20,7 @@ namespace PDF4Dev.JsonConverters
                     {
                         return global::PDF4Dev.CreateComponentRequestTypeExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

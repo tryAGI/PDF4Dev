@@ -10,15 +10,15 @@ namespace PDF4Dev
     public enum PdfFormatHorizontalAlign
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Center,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Left,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Right,
     }
