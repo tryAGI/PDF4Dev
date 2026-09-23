@@ -13,6 +13,10 @@ namespace PDF4Dev
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[]
         {
+            typeof(global::PDF4Dev.JsonConverters.RenderRequestDeliveryJsonConverter),
+
+            typeof(global::PDF4Dev.JsonConverters.RenderRequestDeliveryNullableJsonConverter),
+
             typeof(global::PDF4Dev.JsonConverters.ComponentTypeJsonConverter),
 
             typeof(global::PDF4Dev.JsonConverters.ComponentTypeNullableJsonConverter),
@@ -73,6 +77,8 @@ namespace PDF4Dev
 
             typeof(global::PDF4Dev.JsonConverters.GetStatsPeriodNullableJsonConverter),
 
+            typeof(global::PDF4Dev.JsonConverters.OneOfJsonConverter<global::PDF4Dev.RenderUrlResponse, global::PDF4Dev.RenderBase64Response>),
+
             typeof(global::PDF4Dev.JsonConverters.AllOfJsonConverter<global::PDF4Dev.ApiKey, global::PDF4Dev.CreateApiKeyResponse2>),
 
             typeof(global::PDF4Dev.JsonConverters.UnixTimestampJsonConverter),
@@ -83,8 +89,13 @@ namespace PDF4Dev
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.PdfFormat))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.Template))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.RenderRequestDelivery), TypeInfoPropertyName = "RenderRequestDelivery2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.RenderUrlResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.RenderBase64Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.Template))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.CreateTemplateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.UpdateTemplateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.Component))]
@@ -104,8 +115,6 @@ namespace PDF4Dev
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.ApiErrorErrorType), TypeInfoPropertyName = "ApiErrorErrorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.PdfLog))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.PdfLogStatus), TypeInfoPropertyName = "PdfLogStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.CursorPaginatedLogs))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::PDF4Dev.PdfLog>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
@@ -118,6 +127,7 @@ namespace PDF4Dev
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.GetLogsStatus), TypeInfoPropertyName = "GetLogsStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.GetStatsPeriod), TypeInfoPropertyName = "GetStatsPeriod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.OneOf<global::PDF4Dev.RenderUrlResponse, global::PDF4Dev.RenderBase64Response>), TypeInfoPropertyName = "OneOfRenderUrlResponseRenderBase64Response2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::PDF4Dev.Template>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::PDF4Dev.DeleteTemplateResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::PDF4Dev.Component>))]
