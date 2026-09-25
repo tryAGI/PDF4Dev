@@ -39,6 +39,15 @@ namespace PDF4Dev
         public global::PDF4Dev.PdfFormat? Format { get; set; }
 
         /// <summary>
+        /// How to return the PDF. Omit for a binary `application/pdf` body (the default). `base64` returns JSON with the bytes inline. `url` stores the render and returns a signed URL valid for 24 hours, which is the recommended path for PDFs over 1 MB and for AI agents that cannot hold binary in context.<br/>
+        /// Example: url
+        /// </summary>
+        /// <example>url</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("delivery")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::PDF4Dev.JsonConverters.RenderRequestDeliveryJsonConverter))]
+        public global::PDF4Dev.RenderRequestDelivery? Delivery { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -62,6 +71,10 @@ namespace PDF4Dev
         /// <param name="format">
         /// Page format configuration. If omitted, defaults to A4 portrait with 20mm top/bottom and 15mm left/right margins.
         /// </param>
+        /// <param name="delivery">
+        /// How to return the PDF. Omit for a binary `application/pdf` body (the default). `base64` returns JSON with the bytes inline. `url` stores the render and returns a signed URL valid for 24 hours, which is the recommended path for PDFs over 1 MB and for AI agents that cannot hold binary in context.<br/>
+        /// Example: url
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -69,12 +82,14 @@ namespace PDF4Dev
             string? templateId,
             string? html,
             object? data,
-            global::PDF4Dev.PdfFormat? format)
+            global::PDF4Dev.PdfFormat? format,
+            global::PDF4Dev.RenderRequestDelivery? delivery)
         {
             this.TemplateId = templateId;
             this.Html = html;
             this.Data = data;
             this.Format = format;
+            this.Delivery = delivery;
         }
 
         /// <summary>
