@@ -52,7 +52,7 @@ namespace PDF4Dev
         public long? SizeBytes { get; set; }
 
         /// <summary>
-        /// Error message (null if successful)
+        /// Error message, omitted if the render succeeded
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("error")]
         public string? Error { get; set; }
@@ -86,7 +86,7 @@ namespace PDF4Dev
         /// PDF file size in bytes (null if generation failed)
         /// </param>
         /// <param name="error">
-        /// Error message (null if successful)
+        /// Error message, omitted if the render succeeded
         /// </param>
         /// <param name="createdAt"></param>
 #if NET7_0_OR_GREATER
