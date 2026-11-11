@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// Default sample values for preview
+    /// Default sample values for preview. Must be a JSON object (an array answers 400 `invalid_sample_data`).
     /// </summary>
     public sealed partial class CreateTemplateRequestSampleData
     {

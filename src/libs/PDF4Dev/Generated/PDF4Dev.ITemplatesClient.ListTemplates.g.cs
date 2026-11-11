@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// List templates<br/>
-        /// Returns all templates belonging to the authenticated user. Requires `full_access` API key scope.
+        /// Returns all templates of the authenticated organization. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -16,7 +16,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List templates<br/>
-        /// Returns all templates belonging to the authenticated user. Requires `full_access` API key scope.
+        /// Returns all templates of the authenticated organization. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

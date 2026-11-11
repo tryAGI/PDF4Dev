@@ -6,7 +6,8 @@ namespace PDF4Dev
     {
         /// <summary>
         /// List PDF generation logs<br/>
-        /// Returns logs of all PDF generations with cursor-based pagination. Filter by status, template, or date range. Requires `full_access` API key scope.
+        /// Returns logs of all PDF generations with cursor-based pagination. Filter by status, template, or date range. Requires `full_access` API key scope.<br/>
+        /// Errors: 400 `invalid_cursor` (the cursor names no log of this organization, such as one deleted since), `invalid_parameter` (an unknown `status`, or a `from` / `to` that is not a date).
         /// </summary>
         /// <param name="limit">
         /// Default Value: 50
@@ -30,7 +31,8 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List PDF generation logs<br/>
-        /// Returns logs of all PDF generations with cursor-based pagination. Filter by status, template, or date range. Requires `full_access` API key scope.
+        /// Returns logs of all PDF generations with cursor-based pagination. Filter by status, template, or date range. Requires `full_access` API key scope.<br/>
+        /// Errors: 400 `invalid_cursor` (the cursor names no log of this organization, such as one deleted since), `invalid_parameter` (an unknown `status`, or a `from` / `to` that is not a date).
         /// </summary>
         /// <param name="limit">
         /// Default Value: 50

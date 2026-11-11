@@ -41,7 +41,8 @@ namespace PDF4Dev
 
         /// <summary>
         /// Delete account<br/>
-        /// Permanently delete the user account and all associated data (templates, API keys, logs). This action cannot be undone. Session auth only.
+        /// Permanently delete the user account. Teams where the user is the only member are deleted with their data (templates, components, API keys, logs). In a team shared with others, what the user created is handed to the oldest other admin (else the oldest other member) and the team keeps it. This action cannot be undone. Session auth only.<br/>
+        /// Errors: 409 `last_admin` when the user is the last admin of a team that has other members (nothing is deleted: make another member an admin first); 500 `deletion_failed`.
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -59,7 +60,8 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Delete account<br/>
-        /// Permanently delete the user account and all associated data (templates, API keys, logs). This action cannot be undone. Session auth only.
+        /// Permanently delete the user account. Teams where the user is the only member are deleted with their data (templates, components, API keys, logs). In a team shared with others, what the user created is handed to the oldest other admin (else the oldest other member) and the team keeps it. This action cannot be undone. Session auth only.<br/>
+        /// Errors: 409 `last_admin` when the user is the last admin of a team that has other members (nothing is deleted: make another member an admin first); 500 `deletion_failed`.
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -317,7 +319,7 @@ namespace PDF4Dev
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Unauthorized: missing, invalid, or insufficient API key
+                            // Unauthorized: missing or invalid API key
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -349,6 +351,43 @@ namespace PDF4Dev
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The user is the last admin of a team that has other members (`last_admin`). Nothing was deleted.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::PDF4Dev.ApiError? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::PDF4Dev.ApiError.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::PDF4Dev.ApiError.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::PDF4Dev.ApiException<global::PDF4Dev.ApiError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

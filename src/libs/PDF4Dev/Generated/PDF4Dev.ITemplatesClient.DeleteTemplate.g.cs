@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Delete a template<br/>
-        /// Permanently delete a template. This action cannot be undone. Requires `full_access` API key scope.
+        /// Permanently delete a template by ID or slug. This action cannot be undone. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a template<br/>
-        /// Permanently delete a template. This action cannot be undone. Requires `full_access` API key scope.
+        /// Permanently delete a template by ID or slug. This action cannot be undone. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

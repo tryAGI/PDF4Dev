@@ -9,7 +9,7 @@ namespace PDF4Dev
     public sealed partial class UpdateTemplateRequest
     {
         /// <summary>
-        ///
+        /// New name. The slug does not change.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }
@@ -27,25 +27,25 @@ namespace PDF4Dev
         public string? PlainText { get; set; }
 
         /// <summary>
-        /// Page format configuration. If omitted, defaults to A4 portrait with 20mm top/bottom and 15mm left/right margins.
+        /// Replaces the stored format as a whole: missing fields take the defaults. `null` resets it to the default format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("pdf_format")]
         public global::PDF4Dev.PdfFormat? PdfFormat { get; set; }
 
         /// <summary>
-        ///
+        /// A JSON object, or `null` to clear it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sample_data")]
         public object? SampleData { get; set; }
 
         /// <summary>
-        /// Header component ID or null to remove
+        /// A header component (comp_xxx) of your organization. The `&lt;pdf4-header&gt;` tag in `html` is what renders: setting an ID rewrites a tag that names another component, `null` (or an empty string) clears it and removes the tag, and when omitted the ID follows a tag in the `html` sent (`html` without one keeps the current ID, which still prints). An unknown ID or one of another organization answers 400 `component_not_found`, a component that is not a header 400 `component_type_mismatch`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("header_component_id")]
         public string? HeaderComponentId { get; set; }
 
         /// <summary>
-        /// Footer component ID or null to remove
+        /// A footer component (comp_xxx) of your organization. The `&lt;pdf4-footer&gt;` tag in `html` is what renders: setting an ID rewrites a tag that names another component, `null` (or an empty string) clears it and removes the tag, and when omitted the ID follows a tag in the `html` sent (`html` without one keeps the current ID, which still prints). An unknown ID or one of another organization answers 400 `component_not_found`, a component that is not a footer 400 `component_type_mismatch`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("footer_component_id")]
         public string? FooterComponentId { get; set; }
@@ -59,18 +59,22 @@ namespace PDF4Dev
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateTemplateRequest" /> class.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">
+        /// New name. The slug does not change.
+        /// </param>
         /// <param name="html"></param>
         /// <param name="plainText"></param>
         /// <param name="pdfFormat">
-        /// Page format configuration. If omitted, defaults to A4 portrait with 20mm top/bottom and 15mm left/right margins.
+        /// Replaces the stored format as a whole: missing fields take the defaults. `null` resets it to the default format.
         /// </param>
-        /// <param name="sampleData"></param>
+        /// <param name="sampleData">
+        /// A JSON object, or `null` to clear it.
+        /// </param>
         /// <param name="headerComponentId">
-        /// Header component ID or null to remove
+        /// A header component (comp_xxx) of your organization. The `&lt;pdf4-header&gt;` tag in `html` is what renders: setting an ID rewrites a tag that names another component, `null` (or an empty string) clears it and removes the tag, and when omitted the ID follows a tag in the `html` sent (`html` without one keeps the current ID, which still prints). An unknown ID or one of another organization answers 400 `component_not_found`, a component that is not a header 400 `component_type_mismatch`.
         /// </param>
         /// <param name="footerComponentId">
-        /// Footer component ID or null to remove
+        /// A footer component (comp_xxx) of your organization. The `&lt;pdf4-footer&gt;` tag in `html` is what renders: setting an ID rewrites a tag that names another component, `null` (or an empty string) clears it and removes the tag, and when omitted the ID follows a tag in the `html` sent (`html` without one keeps the current ID, which still prints). An unknown ID or one of another organization answers 400 `component_not_found`, a component that is not a footer 400 `component_type_mismatch`.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
