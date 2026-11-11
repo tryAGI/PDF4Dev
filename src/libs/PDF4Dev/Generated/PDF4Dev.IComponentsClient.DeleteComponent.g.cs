@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Delete a component<br/>
-        /// Permanently delete a component. Templates using it will no longer show it. Requires `full_access` API key scope.
+        /// Permanently delete a component. Templates that reference it render without it: their `header_component_id` / `footer_component_id` becomes null and a tag left in their HTML prints nothing. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a component<br/>
-        /// Permanently delete a component. Templates using it will no longer show it. Requires `full_access` API key scope.
+        /// Permanently delete a component. Templates that reference it render without it: their `header_component_id` / `footer_component_id` becomes null and a tag left in their HTML prints nothing. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

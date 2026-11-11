@@ -43,7 +43,8 @@ namespace PDF4Dev
 
         /// <summary>
         /// Create an API key<br/>
-        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.
+        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth, organization admins only (another member gets 401).<br/>
+        /// Errors: 400 `invalid_json` (the body is not a JSON object), `missing_parameter` (no `name`), `invalid_parameter` (a `name` that is not a string of 1 to 100 characters, or an unknown `permission`).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -66,7 +67,8 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Create an API key<br/>
-        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.
+        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth, organization admins only (another member gets 401).<br/>
+        /// Errors: 400 `invalid_json` (the body is not a JSON object), `missing_parameter` (no `name`), `invalid_parameter` (a `name` that is not a string of 1 to 100 characters, or an unknown `permission`).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -337,7 +339,7 @@ namespace PDF4Dev
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Bad request: missing or invalid parameters
+                            // Bad request: the body is not a JSON object (`invalid_json`), or a parameter is missing (`missing_parameter`) or invalid (`invalid_parameter`, `invalid_pdf_format`, `invalid_sample_data`, `component_not_found`, `component_type_mismatch`). The message names the field.
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -374,7 +376,7 @@ namespace PDF4Dev
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Unauthorized: missing, invalid, or insufficient API key
+                            // Unauthorized: missing or invalid API key
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -509,10 +511,11 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Create an API key<br/>
-        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.
+        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth, organization admins only (another member gets 401).<br/>
+        /// Errors: 400 `invalid_json` (the body is not a JSON object), `missing_parameter` (no `name`), `invalid_parameter` (a `name` that is not a string of 1 to 100 characters, or an unknown `permission`).
         /// </summary>
         /// <param name="name">
-        /// Display name for the key<br/>
+        /// Display name for the key, 1 to 100 characters after trimming<br/>
         /// Example: Production
         /// </param>
         /// <param name="permission">

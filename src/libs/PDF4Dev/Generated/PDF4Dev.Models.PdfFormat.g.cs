@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// Page format configuration. If omitted, defaults to A4 portrait with 20mm top/bottom and 15mm left/right margins.
+    /// Page format configuration. Every field is optional: `preset` defaults to `a4` and each missing margin side to 20mm (top, bottom) or 15mm (left, right). A format replaces the stored or template format as a whole, it is never merged with it. Margins, `width` and `height` take px, pt, pc, mm, cm or in, or a bare number of px; a number is stored as `"&lt;n&gt;px"`, an empty margin is 0. `component_gap` is CSS: any length unit (`em`, `rem`, `%` too) or `calc()`. Presets and alignments are case-insensitive. On a template write, an unknown preset, alignment or footer position, or a length that cannot be read, answers 400 `invalid_pdf_format`; a value sent back exactly as stored is kept. On a render, `format` prints as renders always have: an unknown preset prints a4, an unknown alignment or footer position is ignored, a number is accepted for a CSS value, and only a margin (or a custom width or height) that cannot be read answers 400 `invalid_format`. Unknown keys are ignored.
     /// </summary>
     public sealed partial class PdfFormat
     {
@@ -18,7 +18,7 @@ namespace PDF4Dev
         public global::PDF4Dev.PdfFormatPreset? Preset { get; set; }
 
         /// <summary>
-        /// Custom width (only used when preset is `custom`)<br/>
+        /// Custom width (only used when preset is `custom`). Defaults to 210mm.<br/>
         /// Example: 210mm
         /// </summary>
         /// <example>210mm</example>
@@ -26,7 +26,7 @@ namespace PDF4Dev
         public string? Width { get; set; }
 
         /// <summary>
-        /// Custom height (only used when preset is `custom`)<br/>
+        /// Custom height (only used when preset is `custom`). Defaults to 297mm.<br/>
         /// Example: 297mm
         /// </summary>
         /// <example>297mm</example>
@@ -34,7 +34,7 @@ namespace PDF4Dev
         public string? Height { get; set; }
 
         /// <summary>
-        /// Page margins
+        /// Page margins. Each missing side takes its default (20mm top and bottom, 15mm left and right); an empty side is 0.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("margins")]
         public global::PDF4Dev.PdfFormatMargins? Margins { get; set; }
@@ -115,7 +115,7 @@ namespace PDF4Dev
         public string? LineHeight { get; set; }
 
         /// <summary>
-        /// Gap between header/footer components and page content. Applied as padding between the repeated header/footer and the body content.<br/>
+        /// Gap between header/footer components and page content. Applied as CSS padding between the repeated header/footer and the body content, so any CSS length works (`5mm`, `1em`, `2%`, `calc(...)`); a bare number is px.<br/>
         /// Example: 5mm
         /// </summary>
         /// <example>5mm</example>
@@ -145,15 +145,15 @@ namespace PDF4Dev
         /// Example: a4
         /// </param>
         /// <param name="width">
-        /// Custom width (only used when preset is `custom`)<br/>
+        /// Custom width (only used when preset is `custom`). Defaults to 210mm.<br/>
         /// Example: 210mm
         /// </param>
         /// <param name="height">
-        /// Custom height (only used when preset is `custom`)<br/>
+        /// Custom height (only used when preset is `custom`). Defaults to 297mm.<br/>
         /// Example: 297mm
         /// </param>
         /// <param name="margins">
-        /// Page margins
+        /// Page margins. Each missing side takes its default (20mm top and bottom, 15mm left and right); an empty side is 0.
         /// </param>
         /// <param name="backgroundColor">
         /// Page background color (CSS value)<br/>
@@ -192,7 +192,7 @@ namespace PDF4Dev
         /// Example: 1.5
         /// </param>
         /// <param name="componentGap">
-        /// Gap between header/footer components and page content. Applied as padding between the repeated header/footer and the body content.<br/>
+        /// Gap between header/footer components and page content. Applied as CSS padding between the repeated header/footer and the body content, so any CSS length works (`5mm`, `1em`, `2%`, `calc(...)`); a bare number is px.<br/>
         /// Example: 5mm
         /// </param>
         /// <param name="footerPosition">

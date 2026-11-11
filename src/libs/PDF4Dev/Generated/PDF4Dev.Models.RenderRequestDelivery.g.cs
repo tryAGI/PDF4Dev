@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// How to return the PDF. Omit for a binary `application/pdf` body (the default). `base64` returns JSON with the bytes inline. `url` stores the render and returns a signed URL valid for 24 hours, which is the recommended path for PDFs over 1 MB and for AI agents that cannot hold binary in context.<br/>
+    /// How to return the PDF. Omit for a binary `application/pdf` body (the default). `base64` returns JSON with the bytes inline. `url` stores the render and returns a signed URL valid for 24 hours, which is the recommended path for PDFs over 1 MB and for AI agents that cannot hold binary in context. An organization keeps at most 200 stored renders (500 MiB) by default; past that its oldest are deleted first, so a URL can stop working sooner. After expiry the URL answers 404 `render_expired`.<br/>
     /// Example: url
     /// </summary>
     public enum RenderRequestDelivery

@@ -45,7 +45,8 @@ namespace PDF4Dev
 
         /// <summary>
         /// Update a template<br/>
-        /// Update a template's HTML, format, or sample data. Only provided fields are updated. Requires `full_access` API key scope.
+        /// Update a template by ID or slug. Only provided fields are updated; a `pdf_format` replaces the stored format as a whole (missing fields take the defaults, nothing is merged). The slug never changes, even on a rename. Requires `full_access` API key scope.<br/>
+        /// Errors: 400 `invalid_json`, `invalid_parameter`, `invalid_pdf_format`, `invalid_sample_data`, `component_not_found`, `component_type_mismatch`. A refused update changes nothing.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
@@ -71,7 +72,8 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Update a template<br/>
-        /// Update a template's HTML, format, or sample data. Only provided fields are updated. Requires `full_access` API key scope.
+        /// Update a template by ID or slug. Only provided fields are updated; a `pdf_format` replaces the stored format as a whole (missing fields take the defaults, nothing is merged). The slug never changes, even on a rename. Requires `full_access` API key scope.<br/>
+        /// Errors: 400 `invalid_json`, `invalid_parameter`, `invalid_pdf_format`, `invalid_sample_data`, `component_not_found`, `component_type_mismatch`. A refused update changes nothing.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
@@ -346,7 +348,44 @@ namespace PDF4Dev
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Unauthorized: missing, invalid, or insufficient API key
+                            // Bad request: the body is not a JSON object (`invalid_json`), or a parameter is missing (`missing_parameter`) or invalid (`invalid_parameter`, `invalid_pdf_format`, `invalid_sample_data`, `component_not_found`, `component_type_mismatch`). The message names the field.
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::PDF4Dev.ApiError? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::PDF4Dev.ApiError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::PDF4Dev.ApiError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::PDF4Dev.ApiException<global::PDF4Dev.ApiError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Unauthorized: missing or invalid API key
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -378,6 +417,43 @@ namespace PDF4Dev
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Forbidden: the API key is valid but `render_only`, and this endpoint needs `full_access`
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::PDF4Dev.ApiError? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::PDF4Dev.ApiError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::PDF4Dev.ApiError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::PDF4Dev.ApiException<global::PDF4Dev.ApiError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -518,21 +594,26 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Update a template<br/>
-        /// Update a template's HTML, format, or sample data. Only provided fields are updated. Requires `full_access` API key scope.
+        /// Update a template by ID or slug. Only provided fields are updated; a `pdf_format` replaces the stored format as a whole (missing fields take the defaults, nothing is merged). The slug never changes, even on a rename. Requires `full_access` API key scope.<br/>
+        /// Errors: 400 `invalid_json`, `invalid_parameter`, `invalid_pdf_format`, `invalid_sample_data`, `component_not_found`, `component_type_mismatch`. A refused update changes nothing.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="name"></param>
+        /// <param name="name">
+        /// New name. The slug does not change.
+        /// </param>
         /// <param name="html"></param>
         /// <param name="plainText"></param>
         /// <param name="pdfFormat">
-        /// Page format configuration. If omitted, defaults to A4 portrait with 20mm top/bottom and 15mm left/right margins.
+        /// Replaces the stored format as a whole: missing fields take the defaults. `null` resets it to the default format.
         /// </param>
-        /// <param name="sampleData"></param>
+        /// <param name="sampleData">
+        /// A JSON object, or `null` to clear it.
+        /// </param>
         /// <param name="headerComponentId">
-        /// Header component ID or null to remove
+        /// A header component (comp_xxx) of your organization. The `&lt;pdf4-header&gt;` tag in `html` is what renders: setting an ID rewrites a tag that names another component, `null` (or an empty string) clears it and removes the tag, and when omitted the ID follows a tag in the `html` sent (`html` without one keeps the current ID, which still prints). An unknown ID or one of another organization answers 400 `component_not_found`, a component that is not a header 400 `component_type_mismatch`.
         /// </param>
         /// <param name="footerComponentId">
-        /// Footer component ID or null to remove
+        /// A footer component (comp_xxx) of your organization. The `&lt;pdf4-footer&gt;` tag in `html` is what renders: setting an ID rewrites a tag that names another component, `null` (or an empty string) clears it and removes the tag, and when omitted the ID follows a tag in the `html` sent (`html` without one keeps the current ID, which still prints). An unknown ID or one of another organization answers 400 `component_not_found`, a component that is not a footer 400 `component_type_mismatch`.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

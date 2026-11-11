@@ -326,7 +326,7 @@ namespace PDF4Dev
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Unauthorized: missing, invalid, or insufficient API key
+                            // Unauthorized: missing or invalid API key
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;

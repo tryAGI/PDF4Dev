@@ -6,7 +6,8 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Delete account<br/>
-        /// Permanently delete the user account and all associated data (templates, API keys, logs). This action cannot be undone. Session auth only.
+        /// Permanently delete the user account. Teams where the user is the only member are deleted with their data (templates, components, API keys, logs). In a team shared with others, what the user created is handed to the oldest other admin (else the oldest other member) and the team keeps it. This action cannot be undone. Session auth only.<br/>
+        /// Errors: 409 `last_admin` when the user is the last admin of a team that has other members (nothing is deleted: make another member an admin first); 500 `deletion_failed`.
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -16,7 +17,8 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete account<br/>
-        /// Permanently delete the user account and all associated data (templates, API keys, logs). This action cannot be undone. Session auth only.
+        /// Permanently delete the user account. Teams where the user is the only member are deleted with their data (templates, components, API keys, logs). In a team shared with others, what the user created is handed to the oldest other admin (else the oldest other member) and the team keeps it. This action cannot be undone. Session auth only.<br/>
+        /// Errors: 409 `last_admin` when the user is the last admin of a team that has other members (nothing is deleted: make another member an admin first); 500 `deletion_failed`.
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

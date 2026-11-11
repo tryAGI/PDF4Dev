@@ -43,7 +43,7 @@ namespace PDF4Dev
 
         /// <summary>
         /// Create a component<br/>
-        /// Create a header or footer component. Use {{variables}} for data. In footers, use &lt;span class="pageNumber"&gt;&lt;/span&gt; and &lt;span class="totalPages"&gt;&lt;/span&gt; for page numbers. Requires `full_access` API key scope.
+        /// Create a header, footer or block component. Use {{variables}} for data. In a header or footer, page numbers are written `&lt;span class="pageNumber"&gt;&lt;/span&gt;` / `&lt;span class="totalPages"&gt;&lt;/span&gt;` or `{{pageNumber}}` / `{{totalPages}}`: PDF4.dev stamps them on each page after rendering, and they are not data variables. Errors: 400 `invalid_json`, `missing_parameter`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -66,7 +66,7 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Create a component<br/>
-        /// Create a header or footer component. Use {{variables}} for data. In footers, use &lt;span class="pageNumber"&gt;&lt;/span&gt; and &lt;span class="totalPages"&gt;&lt;/span&gt; for page numbers. Requires `full_access` API key scope.
+        /// Create a header, footer or block component. Use {{variables}} for data. In a header or footer, page numbers are written `&lt;span class="pageNumber"&gt;&lt;/span&gt;` / `&lt;span class="totalPages"&gt;&lt;/span&gt;` or `{{pageNumber}}` / `{{totalPages}}`: PDF4.dev stamps them on each page after rendering, and they are not data variables. Errors: 400 `invalid_json`, `missing_parameter`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -337,7 +337,7 @@ namespace PDF4Dev
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Bad request: missing or invalid parameters
+                            // Bad request: the body is not a JSON object (`invalid_json`), or a parameter is missing (`missing_parameter`) or invalid (`invalid_parameter`, `invalid_pdf_format`, `invalid_sample_data`, `component_not_found`, `component_type_mismatch`). The message names the field.
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -374,7 +374,7 @@ namespace PDF4Dev
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Unauthorized: missing, invalid, or insufficient API key
+                            // Unauthorized: missing or invalid API key
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -406,6 +406,43 @@ namespace PDF4Dev
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Forbidden: the API key is valid but `render_only`, and this endpoint needs `full_access`
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::PDF4Dev.ApiError? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::PDF4Dev.ApiError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::PDF4Dev.ApiError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::PDF4Dev.ApiException<global::PDF4Dev.ApiError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -509,7 +546,7 @@ namespace PDF4Dev
         }
         /// <summary>
         /// Create a component<br/>
-        /// Create a header or footer component. Use {{variables}} for data. In footers, use &lt;span class="pageNumber"&gt;&lt;/span&gt; and &lt;span class="totalPages"&gt;&lt;/span&gt; for page numbers. Requires `full_access` API key scope.
+        /// Create a header, footer or block component. Use {{variables}} for data. In a header or footer, page numbers are written `&lt;span class="pageNumber"&gt;&lt;/span&gt;` / `&lt;span class="totalPages"&gt;&lt;/span&gt;` or `{{pageNumber}}` / `{{totalPages}}`: PDF4.dev stamps them on each page after rendering, and they are not data variables. Errors: 400 `invalid_json`, `missing_parameter`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="name">
         /// Component name (e.g. Company header)

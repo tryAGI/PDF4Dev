@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// Data to replace `{{variables}}` in the template. Supports strings, numbers, booleans, nested objects, and arrays (for `{{#each}}` blocks).<br/>
+    /// Data to replace `{{variables}}` in the template. A JSON object: `null`, `""`, `false` and `0` read as omitted, anything else answers 400 `invalid_data`. Supports strings, numbers, booleans, nested objects, and arrays (for `{{#each}}` blocks).<br/>
     /// Example: {"name":"World","company":"Acme Corp"}
     /// </summary>
     public sealed partial class RenderRequestData

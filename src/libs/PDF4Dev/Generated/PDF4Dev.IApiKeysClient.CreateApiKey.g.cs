@@ -6,7 +6,8 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Create an API key<br/>
-        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.
+        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth, organization admins only (another member gets 401).<br/>
+        /// Errors: 400 `invalid_json` (the body is not a JSON object), `missing_parameter` (no `name`), `invalid_parameter` (a `name` that is not a string of 1 to 100 characters, or an unknown `permission`).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -19,7 +20,8 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create an API key<br/>
-        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.
+        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth, organization admins only (another member gets 401).<br/>
+        /// Errors: 400 `invalid_json` (the body is not a JSON object), `missing_parameter` (no `name`), `invalid_parameter` (a `name` that is not a string of 1 to 100 characters, or an unknown `permission`).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -32,10 +34,11 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create an API key<br/>
-        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth only.
+        /// Create a new API key. The full token is returned only once in the response: store it securely. Session auth, organization admins only (another member gets 401).<br/>
+        /// Errors: 400 `invalid_json` (the body is not a JSON object), `missing_parameter` (no `name`), `invalid_parameter` (a `name` that is not a string of 1 to 100 characters, or an unknown `permission`).
         /// </summary>
         /// <param name="name">
-        /// Display name for the key<br/>
+        /// Display name for the key, 1 to 100 characters after trimming<br/>
         /// Example: Production
         /// </param>
         /// <param name="permission">

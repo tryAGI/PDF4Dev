@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Create a component<br/>
-        /// Create a header or footer component. Use {{variables}} for data. In footers, use &lt;span class="pageNumber"&gt;&lt;/span&gt; and &lt;span class="totalPages"&gt;&lt;/span&gt; for page numbers. Requires `full_access` API key scope.
+        /// Create a header, footer or block component. Use {{variables}} for data. In a header or footer, page numbers are written `&lt;span class="pageNumber"&gt;&lt;/span&gt;` / `&lt;span class="totalPages"&gt;&lt;/span&gt;` or `{{pageNumber}}` / `{{totalPages}}`: PDF4.dev stamps them on each page after rendering, and they are not data variables. Errors: 400 `invalid_json`, `missing_parameter`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -19,7 +19,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a component<br/>
-        /// Create a header or footer component. Use {{variables}} for data. In footers, use &lt;span class="pageNumber"&gt;&lt;/span&gt; and &lt;span class="totalPages"&gt;&lt;/span&gt; for page numbers. Requires `full_access` API key scope.
+        /// Create a header, footer or block component. Use {{variables}} for data. In a header or footer, page numbers are written `&lt;span class="pageNumber"&gt;&lt;/span&gt;` / `&lt;span class="totalPages"&gt;&lt;/span&gt;` or `{{pageNumber}}` / `{{totalPages}}`: PDF4.dev stamps them on each page after rendering, and they are not data variables. Errors: 400 `invalid_json`, `missing_parameter`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -32,7 +32,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a component<br/>
-        /// Create a header or footer component. Use {{variables}} for data. In footers, use &lt;span class="pageNumber"&gt;&lt;/span&gt; and &lt;span class="totalPages"&gt;&lt;/span&gt; for page numbers. Requires `full_access` API key scope.
+        /// Create a header, footer or block component. Use {{variables}} for data. In a header or footer, page numbers are written `&lt;span class="pageNumber"&gt;&lt;/span&gt;` / `&lt;span class="totalPages"&gt;&lt;/span&gt;` or `{{pageNumber}}` / `{{totalPages}}`: PDF4.dev stamps them on each page after rendering, and they are not data variables. Errors: 400 `invalid_json`, `missing_parameter`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="name">
         /// Component name (e.g. Company header)

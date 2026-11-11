@@ -21,13 +21,13 @@ namespace PDF4Dev
         public int? TotalRenders { get; set; }
 
         /// <summary>
-        /// Success rate as percentage (0-100)
+        /// Success rate as a percentage (0-100), rounded down; 100 when nothing was rendered
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("success_rate")]
         public int? SuccessRate { get; set; }
 
         /// <summary>
-        /// Average render duration in milliseconds
+        /// Average duration of successful renders, in milliseconds
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("avg_duration_ms")]
         public int? AvgDurationMs { get; set; }
@@ -37,6 +37,18 @@ namespace PDF4Dev
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_size_bytes")]
         public long? TotalSizeBytes { get; set; }
+
+        /// <summary>
+        /// Number of successful renders
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("success_count")]
+        public int? SuccessCount { get; set; }
+
+        /// <summary>
+        /// Number of failed renders
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("error_count")]
+        public int? ErrorCount { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -54,13 +66,19 @@ namespace PDF4Dev
         /// Total number of PDF renders
         /// </param>
         /// <param name="successRate">
-        /// Success rate as percentage (0-100)
+        /// Success rate as a percentage (0-100), rounded down; 100 when nothing was rendered
         /// </param>
         /// <param name="avgDurationMs">
-        /// Average render duration in milliseconds
+        /// Average duration of successful renders, in milliseconds
         /// </param>
         /// <param name="totalSizeBytes">
         /// Total size of all generated PDFs in bytes
+        /// </param>
+        /// <param name="successCount">
+        /// Number of successful renders
+        /// </param>
+        /// <param name="errorCount">
+        /// Number of failed renders
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -70,13 +88,17 @@ namespace PDF4Dev
             int? totalRenders,
             int? successRate,
             int? avgDurationMs,
-            long? totalSizeBytes)
+            long? totalSizeBytes,
+            int? successCount,
+            int? errorCount)
         {
             this.Templates = templates;
             this.TotalRenders = totalRenders;
             this.SuccessRate = successRate;
             this.AvgDurationMs = avgDurationMs;
             this.TotalSizeBytes = totalSizeBytes;
+            this.SuccessCount = successCount;
+            this.ErrorCount = errorCount;
         }
 
         /// <summary>

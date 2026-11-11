@@ -15,7 +15,7 @@ namespace PDF4Dev
         public string? Name { get; set; }
 
         /// <summary>
-        /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline.
+        /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline. Templates that already use the component keep it in the slot they put it in: changing the type does not move it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::PDF4Dev.JsonConverters.UpdateComponentRequestTypeJsonConverter))]
@@ -44,7 +44,7 @@ namespace PDF4Dev
         /// </summary>
         /// <param name="name"></param>
         /// <param name="type">
-        /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline.
+        /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline. Templates that already use the component keep it in the slot they put it in: changing the type does not move it.
         /// </param>
         /// <param name="html"></param>
         /// <param name="preview">

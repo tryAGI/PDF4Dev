@@ -9,7 +9,7 @@ namespace PDF4Dev
     public sealed partial class CreateApiKeyRequest
     {
         /// <summary>
-        /// Display name for the key<br/>
+        /// Display name for the key, 1 to 100 characters after trimming<br/>
         /// Example: Production
         /// </summary>
         /// <example>Production</example>
@@ -36,7 +36,7 @@ namespace PDF4Dev
         /// Initializes a new instance of the <see cref="CreateApiKeyRequest" /> class.
         /// </summary>
         /// <param name="name">
-        /// Display name for the key<br/>
+        /// Display name for the key, 1 to 100 characters after trimming<br/>
         /// Example: Production
         /// </param>
         /// <param name="permission">

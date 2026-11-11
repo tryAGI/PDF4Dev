@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// List components<br/>
-        /// Returns all components (headers, footers, blocks). Use header/footer IDs in templates for repeating page elements. Block components are referenced via &lt;pdf4-block&gt; tags in template HTML. Requires `full_access` API key scope.
+        /// Returns all components (headers, footers, blocks). Use header/footer IDs in templates for repeating page elements. Block components are referenced via &lt;pdf4-block&gt; tags in template HTML. An unknown `type` answers 400 `invalid_parameter`. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List components<br/>
-        /// Returns all components (headers, footers, blocks). Use header/footer IDs in templates for repeating page elements. Block components are referenced via &lt;pdf4-block&gt; tags in template HTML. Requires `full_access` API key scope.
+        /// Returns all components (headers, footers, blocks). Use header/footer IDs in templates for repeating page elements. Block components are referenced via &lt;pdf4-block&gt; tags in template HTML. An unknown `type` answers 400 `invalid_parameter`. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    /// Page margins
+    /// Page margins. Each missing side takes its default (20mm top and bottom, 15mm left and right); an empty side is 0.
     /// </summary>
     public sealed partial class PdfFormatMargins
     {

@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Get usage statistics<br/>
-        /// Returns aggregated usage statistics including template count, total renders, success rate, average duration, and total size. Optionally filter by time period. Session auth only.
+        /// Returns aggregated usage statistics including template count, total renders, success rate, average duration, and total size. Optionally filter by time period (an unknown period answers all time). The average duration covers successful renders only, and the success rate is rounded down, so a single failure never reads as 100%. Session auth only.
         /// </summary>
         /// <param name="period"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get usage statistics<br/>
-        /// Returns aggregated usage statistics including template count, total renders, success rate, average duration, and total size. Optionally filter by time period. Session auth only.
+        /// Returns aggregated usage statistics including template count, total renders, success rate, average duration, and total size. Optionally filter by time period (an unknown period answers all time). The average duration covers successful renders only, and the success rate is rounded down, so a single failure never reads as 100%. Session auth only.
         /// </summary>
         /// <param name="period"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

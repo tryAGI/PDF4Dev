@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// List API keys<br/>
-        /// Returns all API keys for the authenticated user. Only key prefix is shown, not the full token. Session auth only.
+        /// Returns all API keys of the organization. Only key prefix is shown, not the full token. Session auth, organization admins only (another member gets 401).
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -16,7 +16,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List API keys<br/>
-        /// Returns all API keys for the authenticated user. Only key prefix is shown, not the full token. Session auth only.
+        /// Returns all API keys of the organization. Only key prefix is shown, not the full token. Session auth, organization admins only (another member gets 401).
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

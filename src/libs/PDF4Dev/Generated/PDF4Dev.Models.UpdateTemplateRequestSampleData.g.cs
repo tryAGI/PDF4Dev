@@ -4,7 +4,7 @@
 namespace PDF4Dev
 {
     /// <summary>
-    ///
+    /// A JSON object, or `null` to clear it.
     /// </summary>
     public sealed partial class UpdateTemplateRequestSampleData
     {

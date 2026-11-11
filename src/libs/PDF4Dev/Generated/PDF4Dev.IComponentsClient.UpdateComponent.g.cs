@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Update a component<br/>
-        /// Update a component's name or HTML. Requires `full_access` API key scope.
+        /// Update a component's name, type or HTML. Errors: 400 `invalid_json`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
@@ -21,7 +21,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a component<br/>
-        /// Update a component's name or HTML. Requires `full_access` API key scope.
+        /// Update a component's name, type or HTML. Errors: 400 `invalid_json`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="request"></param>
@@ -36,12 +36,12 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a component<br/>
-        /// Update a component's name or HTML. Requires `full_access` API key scope.
+        /// Update a component's name, type or HTML. Errors: 400 `invalid_json`, `invalid_parameter` (an empty name, an unknown type, a non-string html or preview). Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="type">
-        /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline.
+        /// Change component type. Headers repeat on every page (via &lt;thead&gt;), footers repeat on every page (via &lt;tfoot&gt;), blocks render inline. Templates that already use the component keep it in the slot they put it in: changing the type does not move it.
         /// </param>
         /// <param name="html"></param>
         /// <param name="preview">

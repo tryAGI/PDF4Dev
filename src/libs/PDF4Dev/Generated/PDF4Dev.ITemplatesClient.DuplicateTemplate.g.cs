@@ -6,7 +6,7 @@ namespace PDF4Dev
     {
         /// <summary>
         /// Duplicate a template<br/>
-        /// Creates a copy of the template with "(copy)" appended to its name. Requires `full_access` API key scope.
+        /// Creates a copy of the template with "(copy)" appended to its name and a new slug. The copy keeps the stored HTML, format, sample data and components as they are. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace PDF4Dev
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Duplicate a template<br/>
-        /// Creates a copy of the template with "(copy)" appended to its name. Requires `full_access` API key scope.
+        /// Creates a copy of the template with "(copy)" appended to its name and a new slug. The copy keeps the stored HTML, format, sample data and components as they are. Requires `full_access` API key scope.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

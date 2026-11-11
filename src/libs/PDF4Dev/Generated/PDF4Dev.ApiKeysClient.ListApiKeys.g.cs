@@ -41,7 +41,7 @@ namespace PDF4Dev
 
         /// <summary>
         /// List API keys<br/>
-        /// Returns all API keys for the authenticated user. Only key prefix is shown, not the full token. Session auth only.
+        /// Returns all API keys of the organization. Only key prefix is shown, not the full token. Session auth, organization admins only (another member gets 401).
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -59,7 +59,7 @@ namespace PDF4Dev
         }
         /// <summary>
         /// List API keys<br/>
-        /// Returns all API keys for the authenticated user. Only key prefix is shown, not the full token. Session auth only.
+        /// Returns all API keys of the organization. Only key prefix is shown, not the full token. Session auth, organization admins only (another member gets 401).
         /// </summary>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -317,7 +317,7 @@ namespace PDF4Dev
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Unauthorized: missing, invalid, or insufficient API key
+                            // Unauthorized: missing or invalid API key
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
